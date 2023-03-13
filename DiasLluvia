@@ -1,0 +1,120 @@
+import java.util.ArrayList;
+
+public class DiasLluvia {
+    int dia = 0;
+    int mes = 0;
+    boolean lluvia = false;
+
+    boolean array[][] = new boolean[12][30];
+
+    boolean registraDia(int dia, int mes, boolean lluvia) {
+        if (dia <= 30 && dia > 0 && mes > 0 && mes <= 12) {
+            lluvia = true;
+        } else {
+            lluvia = false;
+        }
+        return lluvia;
+    }
+
+    boolean consultarDia(int dia, int mes) {
+        boolean haLlovido = false;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] == registraDia(dia, mes, lluvia)) {
+                    if (registraDia(dia,mes,lluvia)) {
+                        haLlovido = true;
+                    } else {
+                        haLlovido = false;
+                    }
+                }
+            }
+        }
+
+        return haLlovido;
+    }
+
+    int contarDiasLluviosos() {
+        int contDiasLluviosos = 0;
+        for (int i = 0; i < array.length ; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (consultarDia(dia,mes)) {
+                    contDiasLluviosos++;
+                }
+            }
+        }
+
+        return contDiasLluviosos;
+    }
+
+    int trimestreLluvioso() {
+        int cont1 = 0, cont2 = 0, cont3 = 0, cont4 = 0;
+        int trimestreMasLlovido = 0;
+
+        //Bucle para el primer trimestre
+        for (int i = 0; i < array.length - 9; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (consultarDia(dia,mes)) {
+                    cont1++;
+                }
+            }
+        }
+
+        //Bucle para el segundo trimestre
+        for (int i = 0 + 3; i < array.length - 6; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (consultarDia(dia,mes)) {
+                    cont2++;
+                }
+            }
+        }
+
+        //Bucle para el tercer trimestre
+        for (int i = 0 + 6; i < array.length - 3; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (consultarDia(dia,mes)) {
+                    cont3++;
+                }
+            }
+        }
+
+        //Bucle para el cuarto trimestre
+        for (int i = 0 + 9; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (consultarDia(dia,mes)) {
+                    cont4++;
+                }
+            }
+        }
+
+        //comprobar que mes ha llovido mas
+        if (cont1 > cont2 && cont1 > cont3 && cont1 > cont4) {
+            trimestreMasLlovido = 1;
+        } else if (cont2 > cont3 && cont2 > cont4 && cont2 > cont1) {
+            trimestreMasLlovido = 2;
+        } else if (cont3 > cont4 && cont3 > cont1 && cont3 > cont2) {
+            trimestreMasLlovido = 3;
+        } else if (cont4 > cont1 && cont4 > cont2 && cont4 > cont3) {
+            trimestreMasLlovido = 4;
+        }
+
+        return trimestreMasLlovido;
+    }
+
+    ArrayList<Integer> primerDiaLluvia() {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (consultarDia(i, j)) {
+                    System.out.println("El primer dia que llovio fue el " + dia+ " del" + mes);
+                    break;
+                }
+            }
+        }
+
+        ArrayList<Integer> retornar = new ArrayList<Integer>();
+        retornar.add(dia);
+        retornar.add(mes);
+
+        return retornar;
+
+    }
+}
