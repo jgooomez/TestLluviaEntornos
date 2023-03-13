@@ -4,10 +4,13 @@ public class DiasLluvia {
     int dia = 0;
     int mes = 0;
     boolean lluvia = false;
-
     boolean array[][] = new boolean[12][30];
 
-    boolean registraDia(int dia, int mes, boolean lluvia) {
+    public DiasLluvia(boolean[][] array) {
+        this.array = array;
+    }
+
+    public boolean registraDia(int dia, int mes, boolean lluvia) {
         if (dia <= 30 && dia > 0 && mes > 0 && mes <= 12) {
             lluvia = true;
         } else {
@@ -16,24 +19,19 @@ public class DiasLluvia {
         return lluvia;
     }
 
-    boolean consultarDia(int dia, int mes) {
+    public boolean consultarDia(int dia, int mes) {
         boolean haLlovido = false;
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (array[i][j] == registraDia(dia, mes, lluvia)) {
-                    if (registraDia(dia,mes,lluvia)) {
-                        haLlovido = true;
-                    } else {
-                        haLlovido = false;
-                    }
-                }
+
+            if (array[dia][mes] == true) {
+                haLlovido = true;
+            } else {
+                haLlovido = false;
             }
-        }
 
         return haLlovido;
     }
 
-    int contarDiasLluviosos() {
+    public int contarDiasLluviosos() {
         int contDiasLluviosos = 0;
         for (int i = 0; i < array.length ; i++) {
             for (int j = 0; j < array[i].length; j++) {
@@ -46,7 +44,7 @@ public class DiasLluvia {
         return contDiasLluviosos;
     }
 
-    int trimestreLluvioso() {
+    public int trimestreLluvioso() {
         int cont1 = 0, cont2 = 0, cont3 = 0, cont4 = 0;
         int trimestreMasLlovido = 0;
 
@@ -100,7 +98,7 @@ public class DiasLluvia {
         return trimestreMasLlovido;
     }
 
-    ArrayList<Integer> primerDiaLluvia() {
+    public ArrayList<Integer> primerDiaLluvia() {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (consultarDia(i, j)) {
