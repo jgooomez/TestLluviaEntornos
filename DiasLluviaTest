@@ -1,0 +1,78 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class DiasLluviaTest1 {
+    DiasLluvia dias = new DiasLluvia();
+
+    @Test
+    void registraDia() {
+        boolean resultadoReal = dias.registraDia(1,8, true);
+        boolean resultadoEsperado = true;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void registraDia1() {
+        boolean resultadoReal;
+        if (dias.registraDia(20, 2, true)) resultadoReal = true;
+        else resultadoReal = false;
+        boolean resultadoEsperado = true;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void registraDia2() {
+        boolean resultadoReal = dias.registraDia(50,13, true);
+        boolean resultadoEsperado = true;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void consultarDia() {
+        boolean resultadoReal = dias.consultarDia(1, 8);
+        boolean resultadoEsperado = true;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void consultarDia1() {
+        boolean resultadoReal = dias.consultarDia(20, 2);
+        boolean resultadoEsperado = true;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void consultarDia2() {
+        boolean resultadoReal = dias.consultarDia(50, 13);
+        boolean resultadoEsperado = true;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void contarDiasLluviosos() {
+        int resultadoReal = dias.contarDiasLluviosos();
+        int resultadoEsperado = 132;
+        assertEquals(resultadoEsperado, resultadoReal);
+    }
+
+    @Test
+    void contarDiasLluviosos1() {
+        dias.contarDiasLluviosos();
+    }
+
+    @Test
+    void contarDiasLluviosos2() {
+        dias.contarDiasLluviosos();
+    }
+
+    @Test
+    void trimestreLluvioso() {
+        int resultadoReal = dias.trimestreLluvioso();
+        int resultadoEsperado = 2;
+    }
+
+    @Test
+    void primerDiaLluvia() {
+    }
+}
