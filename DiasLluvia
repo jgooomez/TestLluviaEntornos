@@ -6,23 +6,22 @@ public class DiasLluvia {
     boolean lluvia = false;
     boolean array[][] = new boolean[12][30];
 
-    public DiasLluvia(boolean[][] array) {
-        this.array = array;
+    public DiasLluvia() {
     }
 
     public boolean registraDia(int dia, int mes, boolean lluvia) {
         if (dia <= 30 && dia > 0 && mes > 0 && mes <= 12) {
-            lluvia = true;
+            array[dia][mes] = true;
         } else {
             lluvia = false;
         }
-        return lluvia;
+        return array[dia][mes];
     }
 
     public boolean consultarDia(int dia, int mes) {
         boolean haLlovido = false;
 
-            if (array[dia][mes] == true) {
+            if (registraDia(dia,mes,lluvia)) {
                 haLlovido = true;
             } else {
                 haLlovido = false;
@@ -35,7 +34,7 @@ public class DiasLluvia {
         int contDiasLluviosos = 0;
         for (int i = 0; i < array.length ; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (consultarDia(dia,mes)) {
+                if (registraDia(i,j,true)) {
                     contDiasLluviosos++;
                 }
             }
@@ -51,7 +50,7 @@ public class DiasLluvia {
         //Bucle para el primer trimestre
         for (int i = 0; i < array.length - 9; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (consultarDia(dia,mes)) {
+                if (consultarDia(i,j)) {
                     cont1++;
                 }
             }
@@ -60,7 +59,7 @@ public class DiasLluvia {
         //Bucle para el segundo trimestre
         for (int i = 0 + 3; i < array.length - 6; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (consultarDia(dia,mes)) {
+                if (consultarDia(i,j)) {
                     cont2++;
                 }
             }
@@ -69,7 +68,7 @@ public class DiasLluvia {
         //Bucle para el tercer trimestre
         for (int i = 0 + 6; i < array.length - 3; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (consultarDia(dia,mes)) {
+                if (consultarDia(i,j)) {
                     cont3++;
                 }
             }
@@ -78,7 +77,7 @@ public class DiasLluvia {
         //Bucle para el cuarto trimestre
         for (int i = 0 + 9; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (consultarDia(dia,mes)) {
+                if (consultarDia(i,j)) {
                     cont4++;
                 }
             }
